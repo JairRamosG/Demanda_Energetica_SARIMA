@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def outliers_Tukey(serie):
+
     q1, q3 = np.percentile(serie, [25, 75])
 
     IQR = q3 - q1
@@ -12,13 +13,14 @@ def outliers_Tukey(serie):
     lim_sup = q3 + 1.5*IQR
     lim_inf = q1 - 1.5*IQR
 
-    outliers = serie[(serie.to_numpy() < lim_inf) | (serie.to_numpy() > lim_sup)]
+    # outliers = serie[(serie.to_numpy() < lim_inf) | (serie.to_numpy() > lim_sup)]
+    outliers = serie[(serie.to_numpy() < lim_inf)]
+    print(f'Hay {len(outliers)} outliers')
     return outliers
 
-def graficar_outliers(serie, fechas, x_label = 'Tiempo', y_label = None, outliers = None):
-    ax = serie.plot(alpha = 0.7)
+def graficar_outliers(serie, x_label = 'Tiempo', y_label = None, outliers = None):
 
-    serie.loc[fechas].plot(ax = ax, style = 'bo')
+    ax = serie.plot(alpha = 0.7, figsize = (15, 8))
 
     if outliers is not None:
         outliers.plot(ax = ax, style = 'rx')
@@ -28,3 +30,4 @@ def graficar_outliers(serie, fechas, x_label = 'Tiempo', y_label = None, outlier
     
     plt.xlabel(f'{x_label}')
     plt.ylabel(f'{y_label}')
+    plt.grid(True)
