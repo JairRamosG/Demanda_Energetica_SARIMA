@@ -35,5 +35,5 @@ def grafico_estacional(df, col, periodo, estacionalidad = 'meses', seasonal=True
     plt.title(f'Componente estacional - {col}')  
     plt.xlabel('Hora')
     plt.ylabel('MWh')
-    plt.legend(title='Mes', ncol=6, loc='best')  
+    plt.legend(title = estacionalidad, ncol=6, loc='best')  
     plt.show()
