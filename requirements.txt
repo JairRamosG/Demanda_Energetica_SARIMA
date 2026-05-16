@@ -4,3 +4,4 @@ seaborn
 numpy
 statsmodels
 scikit-learn
+pmdarima
